@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Nav from "./components/Nav";
+import PortfolioCard from "./components/PortfolioCard";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <Nav></Nav>
+      </div>
+      <div>
+        <PortfolioCard
+          projectName="Corona Crash"
+          siteURL="https://maxtsimpson.github.io/coronaCrash/index"
+          repoURL="https://github.com/maxtsimpson/coronaCrash"
+          projectDescription="a project to view the impact of the corona virus on stock markets around the world"
+        />
+      </div>
     </div>
   );
 }
