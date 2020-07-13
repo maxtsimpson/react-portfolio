@@ -1,23 +1,26 @@
 import React from 'react';
 import './App.css';
 import Nav from "./components/Nav";
-import PortfolioCard from "./components/PortfolioCard";
+import Portfolio from "./pages/Portfolio"
+import AboutMe from "./pages/AboutMe"
+import Contact from "./pages/Contact"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <Router>
       <div>
         <Nav></Nav>
       </div>
       <div>
-        <PortfolioCard
-          projectName="Corona Crash"
-          siteURL="https://maxtsimpson.github.io/coronaCrash/index"
-          repoURL="https://github.com/maxtsimpson/coronaCrash"
-          projectDescription="a project to view the impact of the corona virus on stock markets around the world"
-        />
+        <Switch>
+          <Route path="/" component={Portfolio} />
+          <Route path="/Portfolio" component={Portfolio} />
+          <Route path="/AboutMe" component={AboutMe} />
+          <Route path="/Contact" component={Contact} />
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 
