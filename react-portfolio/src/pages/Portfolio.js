@@ -10,23 +10,33 @@ const Portfolio = props => {
     useEffect(() => {
         API.getProjectList()
             .then(results => {
-                console.log(results)
                 setProjects(results)
             })
             .catch(error => console.error(error))
     }, [])
 
-    let i = 0;
+    const numberOfRows = 4
+    //need to edit the below to pass in the col values depending on how many cards i want in each row
+
+
+    //this sets the rows array to be an array of fixed size as the number of rows you want
+    //i.e. if you have 15 projects and want 4 rows it will give you 3.something rounded up to 4
+    const rows = [...Array(Math.ceil(projects.length / numberOfRows))];
+    // chunk the products into the array of rows. the row isnt used here just the index
+    //this will split the projects in the project array into equalish chunks to put in your pre-determined array (rows)
+    const projectRows = rows.map((row, index) => projects.slice(index * numberOfRows, index * numberOfRows + numberOfRows))
+    // map the rows as a react materialise row
+    const content = projectRows.map((row, index) => (
+        <Row key={index}>
+            {row.map(project => <PortfolioCard key={project.id} project={project}></PortfolioCard>)}
+        </Row>
+        )
+    )
 
     return (
-        projects.map(project => {
-            if (i % 2 === 0) {
-                <Row></Row>
-                //every second or third put it on a new row
-            }
-            <PortfolioCard key={project.id} project={project}></PortfolioCard>
-            i++
-        })
+        <div>
+            {content}
+        </div>
     )
 }
 
