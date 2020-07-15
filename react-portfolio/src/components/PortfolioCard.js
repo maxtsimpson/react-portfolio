@@ -8,6 +8,7 @@ function PortfolioCard(props) {
 
     const { id, name, projectImage = "https://materializecss.com/images/sample-1.jpg", siteURL, repoURL, description } = props.project
 
+    console.log({projectImage})
     return (
         <Col
             m={6}
