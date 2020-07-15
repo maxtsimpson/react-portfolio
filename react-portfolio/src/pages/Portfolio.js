@@ -15,9 +15,9 @@ const Portfolio = props => {
             .catch(error => console.error(error))
     }, [])
 
-    const numberOfRows = 4
-    //need to edit the below to pass in the col values depending on how many cards i want in each row
-
+    let numberOfRows
+    projects.length > 0 ? numberOfRows = Math.ceil(projects.length / 2) : numberOfRows = 4
+    console.log({numberOfRows})
 
     //this sets the rows array to be an array of fixed size as the number of rows you want
     //i.e. if you have 15 projects and want 4 rows it will give you 3.something rounded up to 4

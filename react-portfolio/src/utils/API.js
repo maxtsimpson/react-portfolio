@@ -1,5 +1,4 @@
 import axios from "axios";
-// const axios = require('axios')
 
 // Gets my github repos and returns them as "projects"
 export default {
@@ -13,7 +12,7 @@ export default {
                     .filter(repo => !repo.private && repo.description !== null && repo.homepage !== null)
                     .map(repo => {
                         const {id, name, description, hmtl_url, homepage} = repo
-                        return {id, name,description,siteURL: homepage,repoURL: homepage}
+                        return {id, name: this.parseProjectName(name),description,siteURL: homepage,repoURL: homepage}
                     })
                     // note that projectImage may need to just get an image from assets that matches the repo name
                     resolve(projectList)
@@ -24,11 +23,12 @@ export default {
 
     getGitRepoDetails: function () {
         return axios.get("https://api.github.com/users/maxtsimpson/repos")
+    },
+
+    parseProjectName: function (projectName) {
+        const wordArray = projectName.replace(/-/g,' ').replace(/_/g,' ').split(" ").map(word => {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        return wordArray.join(" ")
     }
 };
-
-// api.getProjectList()
-// .then(result => console.table(result))
-// .catch(error => console.log(error))
-
-// export default api
