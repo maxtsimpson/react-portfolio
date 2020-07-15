@@ -11,8 +11,8 @@ export default {
                     const projectList = repoData.data
                     .filter(repo => !repo.private && repo.description !== null && repo.homepage !== null)
                     .map(repo => {
-                        const {id, name, description, hmtl_url, homepage} = repo
-                        return {id, name: this.parseProjectName(name),description,siteURL: homepage,repoURL: homepage}
+                        const {id, name, description, html_url, homepage} = repo
+                        return {id, name: this.parseProjectName(name),description,siteURL: homepage,repoURL: html_url}
                     })
                     // note that projectImage may need to just get an image from assets that matches the repo name
                     resolve(projectList)
