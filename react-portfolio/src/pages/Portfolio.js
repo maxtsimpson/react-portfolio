@@ -31,13 +31,8 @@ const Portfolio = props => {
     useEffect(() => {
         API.getProjectList()
             .then(results => {
-                console.log("setting projects")
-                console.log({results})
                 setProjects(results)
-                const content = convertProjectsToRows(results)
-                console.log({content})
-                setContent(content)
-                // projects = results;
+                setContent(convertProjectsToRows(results))
             })
             .catch(error => console.error(error))
     }, [])
