@@ -36,7 +36,7 @@ const Portfolio = props => {
                 setProjects(results)
                 const content = convertProjectsToRows(results)
                 console.log({content})
-                setContent()
+                setContent(content)
                 // projects = results;
             })
             .catch(error => console.error(error))

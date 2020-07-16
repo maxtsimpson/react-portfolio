@@ -8,7 +8,7 @@ export default {
         console.log("in getProjectList")
         return new Promise((resolve, reject) => {
             this.getGitRepoDetails()
-                .then((repoData) => {
+                .then(async (repoData) => {
                     //use functions here to
                     let projectList
                     let result = repoData.data
@@ -18,7 +18,13 @@ export default {
                             return { id, name: this.parseProjectName(name), description, siteURL: homepage, repoURL: html_url }
                         })
                     console.log({ result })
-                    this.populateProjectListWithImages(result).then(projectList => resolve(projectList))
+                    console.log("about to run project list")
+                    await this.populateProjectListWithImages(result)
+                        .then((projectList) => {
+                            console.log("projectList then from main loop")
+                            resolve(projectList)
+                        })
+                    console.log("finished running project list")
                     // console.log({projectList})
                     // resolve(projectList)
                 })
@@ -27,23 +33,19 @@ export default {
     },
 
     populateProjectListWithImages: async function (projectList) {
-        return new Promise((resolve, reject) => {
-            projectList.map((project) => {
-                getLinkPreview('https://maxt-cors-for-max.herokuapp.com/' + project.repoURL)
+        return Promise.all(
+            projectList.map(async project => {
+                return await getLinkPreview('https://maxt-cors-for-max.herokuapp.com/' + project.repoURL)
                     .then((data) => {
                         console.log("got link preview successfully")
                         if (data.images.length > 0) {
                             return { ...project, projectImage: data.images[0] }
                         }
-                        return project
+                        return (project)
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {return error})//console.log(error))
             })
-            .then((newProjectList) => {
-                resolve(newProjectList)
-            })
-            .catch((error) => reject(error))
-        })
+        )
     },
 
     getGitRepoDetails: function () {
