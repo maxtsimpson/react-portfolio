@@ -1,8 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAsia, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { Row, Col, Card, CardTitle, Icon } from 'react-materialize'
+import "./style.css";
 
 function PortfolioCard(props) {
 
@@ -18,16 +19,29 @@ function PortfolioCard(props) {
                 closeIcon={<Icon>close</Icon>}
                 header={<CardTitle image={projectImage} reveal waves="light" />}
                 reveal={
-                    <p>{description}</p>
-                    // <p className="blue-grey-text text-darken-4">{description}</p>
+                    <div>
+                        <p className="blue-grey-text text-darken-4">{description}</p>
+                        <Row>
+                            <a className='left' href={repoURL}>
+                                <FontAwesomeIcon icon={faGithub} />
+                            </a>
+                            <a className='right' href={siteURL}>
+                                <FontAwesomeIcon icon={faGlobeAsia} />
+                            </a>
+                        </Row>
+                    </div>
                 }
                 revealIcon={<Icon>more_vert</Icon>}
                 title={name}
             >
-                <a href={repoURL}>
+                <a className="left btn-floating btn-small waves-effect waves-light teal"
+                    href={repoURL}
+                >
                     <FontAwesomeIcon icon={faGithub} />
                 </a>
-                <a href={siteURL}>
+                <a className="right btn-floating btn-small waves-effect waves-light teal"
+                    href={siteURL}
+                >
                     <FontAwesomeIcon icon={faGlobeAsia} />
                 </a>
             </Card>
