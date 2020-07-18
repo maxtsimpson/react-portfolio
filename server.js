@@ -5,13 +5,14 @@ const connection = require("./config/mongo.js")
 // const mongoose = require("mongoose");
 //const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
-
+const PORT = process.env.PORT || 3300;
+console.log(`Assigned PORT ${PORT} ===========`)
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
+  console.log(`running as production`)
   app.use(express.static("react-portfolio/build"));
 }
 // Add routes, both API and view
@@ -19,11 +20,12 @@ if (process.env.NODE_ENV === "production") {
 
 // Send every other request to the React app
 // Define any API routes before this runs
+console.log(`set the get anything route`)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./react-portfolio/build/index.html"));
 });
 
-
+console.log(`FIN set the get anything route`)
 // Connect to the Mongo DB
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactcms");
 
