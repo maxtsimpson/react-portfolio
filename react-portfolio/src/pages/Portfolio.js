@@ -15,7 +15,8 @@ const Portfolio = props => {
     
         //this sets the rows array to be an array of fixed size as the number of rows you want
         //i.e. if you have 15 projects and want 4 rows it will give you 3.something rounded up to 4
-        const rows = [...Array(Math.ceil(projects.length / numberOfRows))];
+        // const rows = [...Array(Math.ceil(projects.length / numberOfRows))];
+        const rows = [...Array(numberOfRows)];
         // chunk the products into the array of rows. the row isnt used here just the index
         //this will split the projects in the project array into equalish chunks to put in your pre-determined array (rows)
         const projectRows = rows.map((row, index) => projects.slice(index * numberOfRows, index * numberOfRows + numberOfRows))

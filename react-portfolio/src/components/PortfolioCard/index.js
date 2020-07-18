@@ -15,21 +15,11 @@ function PortfolioCard(props) {
             s={12}
         >
             <Card
-                className="blue-grey darken-4 white-text"
+                className="blue-grey darken-4 white-text small"
                 closeIcon={<Icon>close</Icon>}
                 header={<CardTitle image={projectImage} reveal waves="light" />}
                 reveal={
-                    <div>
-                        <p className="blue-grey-text text-darken-4">{description}</p>
-                        <Row>
-                            <a className='left' href={repoURL}>
-                                <FontAwesomeIcon icon={faGithub} />
-                            </a>
-                            <a className='right' href={siteURL}>
-                                <FontAwesomeIcon icon={faGlobeAsia} />
-                            </a>
-                        </Row>
-                    </div>
+                    <p className="blue-grey-text text-darken-4">{description}</p>
                 }
                 revealIcon={<Icon>more_vert</Icon>}
                 title={name}
