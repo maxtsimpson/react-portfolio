@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("react-portfolio/build"));
 }
 // Add routes, both API and view
-app.use(routes);
+// app.use("/api",routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs
