@@ -24,14 +24,11 @@ function Nav() {
             <NavItem href="">
                 Portfolio
             </NavItem>
-                <NavItem href="">
-                    About me
+            <NavItem href="AboutMe">
+                About me
             </NavItem>
-                <NavItem href="">
-                    Contact
-            </NavItem>
-                <NavItem href="">
-                    Blog
+            <NavItem href="Contact">
+                Contact
             </NavItem>
         </Navbar>
     )
